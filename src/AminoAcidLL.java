@@ -131,6 +131,20 @@ class AminoAcidLL {
   /********************************************************************************************/
   /* Recursively returns the total list of amino acids in the order that they are in in the linked list. */
   public char[] aminoAcidList() {
+
+    //Todo; Not done, needs *lots* of work/Rewrite
+
+    char [] a = new char[1];
+    int index = 0;
+    if(this.next == null){
+
+      a[a.length-1] = this.aminoAcid;
+      return  a;
+    }else{
+      a[index] = this.aminoAcid;
+      index++;
+      return  index + aminoAcidList() ;
+    }
     return new char[]{};
   }
 
@@ -144,7 +158,18 @@ class AminoAcidLL {
   /********************************************************************************************/
   /* recursively determines if a linked list is sorted or not */
   public boolean isSorted() {
-    return false;
+
+
+    //todo: still needs work
+    if(this.aminoAcid > this.next.aminoAcid){
+      return false;
+    }else if(this.next == null){
+      return true;
+    }else{
+      return this.next.isSorted();
+    }
+
+    //return false;
   }
 
 
@@ -209,6 +234,16 @@ class AminoAcidLL {
       }
     }
     return codonCount;
+  }
+
+  public int listLength(){
+    int length = 0;
+    AminoAcidLL current = this.head;
+    while(current.next != null){
+      length++;
+      current = current.next;
+    }
+    return length;
   }
 
   //public void incrCodons(String inCodon){
